@@ -91,17 +91,17 @@ dependencies {
     implementation("io.insert-koin:koin-androidx-compose:$koin_version")
 
     //navigation
-    implementation("io.github.alexgladkov:odyssey-core:1.0.0-beta12") // For core classes
-    implementation("io.github.alexgladkov:odyssey-compose:1.0.0-beta12") // For compose extensions
+    implementation("io.github.alexgladkov:odyssey-core:1.0.0-beta12")
+    implementation("io.github.alexgladkov:odyssey-compose:1.0.0-beta12")
 //    implementation 'io.github.alexgladkov:odyssey-compose-android:1.0.0'
 //    implementation 'io.github.alexgladkov:odyssey-compose-android-debug:1.0.0'
 //    implementation 'io.github.alexgladkov:odyssey-core-android:1.0.0'
 //    implementation 'io.github.alexgladkov:odyssey-core-android-debug:1.0.0'
 
     //view model
-    implementation "com.adeo:kviewmodel:0.7.1" // Core functions
-    implementation "com.adeo:kviewmodel-compose:0.7.1" // Compose extensions
-    implementation "com.adeo:kviewmodel-odyssey:0.7.1" // Odyssey extensions
+    implementation "com.adeo:kviewmodel:0.7.1"
+    implementation "com.adeo:kviewmodel-compose:0.7.1"
+    implementation "com.adeo:kviewmodel-odyssey:0.7.1"
 
     //local
     implementation "androidx.datastore:datastore-preferences:1.0.0"

@@ -1,13 +1,14 @@
 package ru.stroesku.kmm.presentation.ui.features.main
 
-import androidx.compose.foundation.Image
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.LastBaseline
 import androidx.compose.ui.res.painterResource
@@ -15,9 +16,15 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import ru.stroesku.kmm.presentation.ui.extension.isNotZero
+import kotlinx.coroutines.launch
+import ru.alexgladkov.odyssey.compose.base.TabNavigator
+import ru.alexgladkov.odyssey.compose.controllers.MultiStackRootController
+import ru.alexgladkov.odyssey.compose.local.LocalRootController
+import ru.alexgladkov.odyssey.compose.navigation.bottom_bar_navigation.TabConfiguration
+import ru.alexgladkov.odyssey.compose.navigation.bottom_bar_navigation.TabItem
 import ru.stroesku.kmm.R
 import ru.stroesku.kmm.presentation.ui.base.Toolbar
+import ru.stroesku.kmm.presentation.ui.extension.isNotZero
 import ru.stroesku.kmm.presentation.ui.theme.StrTheme
 import ru.stroesku.kmm.presentation.ui.theme.StrTheme.strColors
 import ru.stroesku.kmm.presentation.ui.theme.StrTheme.strShapes
@@ -26,13 +33,13 @@ import ru.stroesku.kmm.presentation.ui.theme.StrTheme.strTypography
 
 @Composable
 fun MainScreen() {
-    Scaffold(drawerContent = { MainDrawer() }) {
+    Scaffold(drawerContent = { MainDrawerScreen() }) {
         Toolbar(Modifier.padding(it), icon = R.drawable.ic_burger)
     }
 }
 
 @Composable
-fun MainDrawer() {
+fun MainDrawerScreen() {
     Surface(
         color = strColors.thirtyBackground,
         modifier = Modifier.fillMaxSize()
@@ -140,7 +147,7 @@ fun MainContent(modifier: Modifier) {}
 @Composable
 fun Preview() {
     StrTheme {
-        MainDrawer()
+        MainDrawerScreen()
     }
 }
 
@@ -161,4 +168,66 @@ fun ArchScreen() {
         text = "SelfScreen",
         textAlign = TextAlign.Center
     )
+}
+
+@Composable
+fun DrawerScreen() {
+    val rootController = LocalRootController.current as MultiStackRootController
+    val tabItem = rootController.stackChangeObserver.collectAsState()
+    val coroutineScope = rememberCoroutineScope()
+    val scaffoldState = rememberScaffoldState(
+        drawerState = rememberDrawerState(DrawerValue.Open)
+    )
+
+    Scaffold(
+        scaffoldState = scaffoldState,
+        drawerContent = {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(color = Color.DarkGray)
+            ) {
+                rootController.tabItems.forEach { currentItem ->
+                    Text(
+                        modifier = Modifier
+                            .height(40.dp)
+                            .fillMaxWidth()
+                            .clickable {
+                                coroutineScope.launch {
+                                    rootController.switchTab(currentItem)
+                                    scaffoldState.drawerState.close()
+                                }
+                            },
+                        text = currentItem.tabInfo.tabItem.name,
+                        textAlign = TextAlign.Center,
+                        color = Color.White
+                    )
+                }
+
+            }
+        }
+    ) {
+        TabNavigator(
+            modifier = Modifier
+                .padding(it)
+                .fillMaxSize(), null, tabItem.value
+        )
+    }
+
+
+    rootController.tabsNavModel.launchedEffect.invoke()
+}
+
+class FeedTab : TabItem() {
+
+    override val configuration: TabConfiguration
+        @Composable
+        get() {
+            return TabConfiguration(
+                title = "Feed",
+                selectedColor = strColors.secondaryTextColor,
+                unselectedColor = strColors.primaryTextColor,
+                titleStyle = strTypography.normal16
+            )
+        }
 }
