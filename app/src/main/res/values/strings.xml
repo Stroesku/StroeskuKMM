@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">vmig-clean</string>
+
+    <!--    Actions-->
+    <string name="ok">Ок</string>
+    <string name="change">Изменить</string>
+
+    <!--    Phone-->
+    <string name="phone_number">Номер телефона</string>
+    <string name="phone_code_7">+7</string>
+
+    <!--    User-->
+    <string name="first_name">Имя</string>
+    <string name="last_name">Фамилия</string>
+
+    <!--    SignIn-->
+    <string name="sign_in">Вход</string>
+    <string name="sign_in_user_agreement_1">Продолжая, вы даете согласие на обработку персональных данных и принимаете условия</string>
+    <string name="sign_in_user_agreement_2">пользовательского соглашения.</string>
+    <string name="phone_input_desc">Укажите номер телефона, на него придет код подтверждения</string>
+
+    <!--    SignUp-->
+    <string name="sign_up">Регистрация</string>
+    <string name="sign_up_step_1">1/2</string>
+    <string name="sign_up_step_2">2/2</string>
+
+    <!--    Code Input-->
+    <string name="code_input_send_code">Мы отправили код на номер %s</string>
+    <string name="get_code">Получить код</string>
+    <string name="repeat_request_code">Отправить код повторно</string>
+    <string name="repeat_request_code_counter">Отправить код повторно через (%s)</string>
+
+
+    <!--    Drawer menu-->
+    <string name="available_orders">Доступные заказы</string>
+
+    <!--    Order Details-->
+    <string name="on_map">На карте</string>
+    <string name="date_clean">Дата уборки</string>
+    <string name="client">Клиент</string>
+    <string name="notes">Заметка</string>
+
+    <!--    Content Desc-->
+    <string name="content_desc_error">Error</string>
+    <string name="content_desc_logo">Logo</string>
+    <string name="content_desc_back">Back</string>
+</resources>
