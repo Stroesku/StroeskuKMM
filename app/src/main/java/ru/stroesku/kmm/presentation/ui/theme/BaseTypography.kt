@@ -4,7 +4,7 @@ import androidx.compose.ui.text.TextStyle
 
 // Set of Material typography styles to start with
 
-data class StrTypography(
+data class BaseTypography(
     //32 medium
     val h1: TextStyle,
     //12 normal

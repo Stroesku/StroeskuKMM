@@ -16,15 +16,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.adeo.kviewmodel.compose.observeAsState
 import com.adeo.kviewmodel.odyssey.StoredViewModel
-import ru.stroesku.kmm.presentation.ui.features.schedule.ScheduleViewModel
 import ru.stroesku.kmm.presentation.ui.features.schedule.flow.ScheduleViewState
 import kotlinx.coroutines.FlowPreview
 import ru.stroesku.kmm.presentation.ui.base.Toolbar
 import ru.stroesku.kmm.presentation.ui.base.VmigDivider
 import ru.stroesku.kmm.presentation.ui.features.schedule.flow.ScheduleAction
-import ru.stroesku.kmm.presentation.ui.theme.StrTheme
-import ru.stroesku.kmm.presentation.ui.theme.StrTheme.strColors
-import ru.stroesku.kmm.presentation.ui.theme.StrTheme.strTypography
+import ru.stroesku.kmm.presentation.ui.theme.BaseTheme
+import ru.stroesku.kmm.presentation.ui.theme.BaseTheme.baseColors
+import ru.stroesku.kmm.presentation.ui.theme.BaseTheme.baseTypography
 import ru.stroesku.kmm.presentation.ui.utils.timeHHMMFormat
 import timber.log.Timber
 import java.util.*
@@ -82,8 +81,8 @@ fun ScheduleDayItem(day: ScheduleDay, onActiveStateChange: (Boolean, ScheduleDay
     ) {
         Text(
             text = day.title,
-            style = strTypography.medium16,
-            color = if (day.isActive) strColors.primaryTextColor else strColors.disableButton
+            style = baseTypography.medium16,
+            //color = if (day.isActive) baseColors.primaryTextColor else baseColors.disableButton
         )
         if (day.isActive) TimeRange(Date(), Date())
         Switch(
@@ -99,7 +98,7 @@ fun TimeRange(startTime: Date, endTime: Date) {
         TimeItem(time = startTime)
         Text(
             text = "-",
-            style = strTypography.medium18,
+            style = baseTypography.medium18,
             modifier = Modifier.padding(horizontal = 4.dp)
         )
         TimeItem(time = endTime)
@@ -111,14 +110,14 @@ fun TimeItem(time: Date) {
     Text(
         modifier = Modifier
             .background(
-                strColors.secondaryBackground,
+                baseColors.secondaryBackground,
                 shape = RoundedCornerShape(20.dp)
             )
-            .border(1.dp, strColors.borderColor, RoundedCornerShape(20.dp))
+            .border(1.dp, baseColors.borderColor, RoundedCornerShape(20.dp))
             .padding(vertical = 14.dp, horizontal = 16.dp),
         text = time.timeHHMMFormat(),
-        color = strColors.secondaryTextColor,
-        style = strTypography.normal14
+        color = baseColors.secondaryTextColor,
+        style = baseTypography.normal14
     )
 }
 
@@ -126,7 +125,7 @@ fun TimeItem(time: Date) {
 @Composable
 @Preview(showBackground = true)
 fun ScheduleScreenPreview() {
-    StrTheme {
+    BaseTheme {
         ScheduleScreen()
     }
 }

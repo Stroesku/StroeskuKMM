@@ -8,10 +8,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import ru.stroesku.kmm.presentation.ui.features.orders.avaliables.Order
-import ru.stroesku.kmm.presentation.ui.theme.StrTheme
-import ru.stroesku.kmm.presentation.ui.theme.StrTheme.strColors
-import ru.stroesku.kmm.presentation.ui.theme.StrTheme.strShapes
-import ru.stroesku.kmm.presentation.ui.theme.StrTheme.strTypography
+import ru.stroesku.kmm.presentation.ui.theme.BaseTheme
+import ru.stroesku.kmm.presentation.ui.theme.BaseTheme.baseColors
+import ru.stroesku.kmm.presentation.ui.theme.BaseTheme.baseShapes
+import ru.stroesku.kmm.presentation.ui.theme.BaseTheme.baseTypography
 import ru.stroesku.kmm.presentation.ui.utils.timeHHMMDayWeekFormat
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -22,7 +22,7 @@ fun OrderItem(order: Order) {
             .padding(top = 8.dp, start = 16.dp, end = 16.dp)
             .fillMaxWidth(),
         onClick = { },
-        shape = strShapes.roundDefault,
+        shape = baseShapes.roundDefault,
         elevation = 2.dp
     ) {
         Column() {
@@ -34,27 +34,27 @@ fun OrderItem(order: Order) {
             ) {
                 Text(
                     text = "№${order.id}",
-                    style = strTypography.normal14,
-                    color = StrTheme.strColors.hintTextColor
+                    style = baseTypography.normal14,
+                    color = BaseTheme.baseColors.hintTextColor
                 )
 
                 Text(
                     text = order.date.timeHHMMDayWeekFormat(),
-                    style = strTypography.normal14,
-                    color = strColors.secondaryTextColor
+                    style = baseTypography.normal14,
+                    color = baseColors.secondaryTextColor
                 )
             }
 
             Text(
                 text = order.address,
-                style = strTypography.medium18,
+                style = baseTypography.medium18,
                 modifier = Modifier.padding(top = 8.dp, start = 16.dp, end = 16.dp)
             )
 
             Text(
                 text = order.type,
-                style = strTypography.normal14,
-                color = strColors.hintTextColor,
+                style = baseTypography.normal14,
+                color = baseColors.hintTextColor,
                 modifier = Modifier.padding(16.dp)
             )
         }

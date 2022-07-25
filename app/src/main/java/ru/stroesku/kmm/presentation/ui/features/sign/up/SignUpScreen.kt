@@ -14,8 +14,6 @@ import com.adeo.kviewmodel.compose.observeAsState
 import com.adeo.kviewmodel.odyssey.StoredViewModel
 import ru.stroesku.kmm.presentation.ui.base.Header
 import ru.stroesku.kmm.presentation.ui.base.Toolbar
-import ru.stroesku.kmm.presentation.ui.base.input.InputPhoneWithTitle
-import ru.stroesku.kmm.presentation.ui.base.input.InputTitleText
 import ru.stroesku.kmm.presentation.ui.features.sign.up.flow.SignUpAction
 import ru.stroesku.kmm.presentation.ui.features.sign.up.flow.SignUpSubState
 import ru.stroesku.kmm.presentation.ui.features.sign.up.flow.SignUpViewState
@@ -24,11 +22,13 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import ru.alexgladkov.odyssey.compose.local.LocalRootController
 import ru.stroesku.kmm.R
-import ru.stroesku.kmm.domain.param.UserInfoParam
+import ru.stroesku.kmm.domain.param.SignParam
 import ru.stroesku.kmm.presentation.ui.base.ErrorDialog
+import ru.stroesku.kmm.presentation.ui.base.input.PhoneInput
+import ru.stroesku.kmm.presentation.ui.base.input.TextInput
 import ru.stroesku.kmm.presentation.ui.features.sign.views.CodeInput
 import ru.stroesku.kmm.presentation.ui.navigation.RootNavTree
-import ru.stroesku.kmm.presentation.ui.theme.StrTheme.strColors
+import ru.stroesku.kmm.presentation.ui.theme.BaseTheme.baseColors
 import timber.log.Timber
 
 
@@ -40,7 +40,7 @@ fun SignUpScreen() {
         val viewState = viewModel.viewStates().observeAsState().value
         Timber.e(viewState.toString())
 
-        Surface(color = strColors.primaryBackground) {
+        Surface(color = baseColors.primaryBackground) {
             Column() {
                 SignUpToolbar(viewState.subState) { viewModel.obtainEvent(SignUpAction.SetPhoneSubState) }
                 SignUpContent(
@@ -72,13 +72,13 @@ fun SignUpToolbar(state: SignUpSubState, setPhoneSubState: () -> Unit) {
 fun SignUpContent(
     modifier: Modifier = Modifier,
     state: SignUpViewState,
-    validateEvent: (UserInfoParam) -> Unit,
+    validateEvent: (SignParam) -> Unit,
     sendPhoneEvent: (String) -> Unit,
     setPhoneSubStateEvent: () -> Unit,
-    sendCodeEvent: (UserInfoParam) -> Unit,
+    sendCodeEvent: (SignParam) -> Unit,
     closeErrorDialog: () -> Unit,
 ) {
-    val userInfo = remember { UserInfoParam() }
+    val userInfo = remember { SignParam() }
     if (state.subState == SignUpSubState.Phone) {
         Column(
             modifier
@@ -148,17 +148,17 @@ fun InputFields(
             modifier = Modifier.padding(top = 8.dp),
             text = stringResource(id = R.string.sign_up)
         )
-        InputTitleText(
+        TextInput(
             modifier = Modifier.padding(top = 24.dp),
             title = stringResource(R.string.first_name),
             onValueChange = { onFirstNameInput(it) })
 
-        InputTitleText(
+        TextInput(
             modifier = Modifier.padding(top = 24.dp),
             title = stringResource(R.string.last_name),
             onValueChange = { onLastNameInput(it) })
 
-        InputPhoneWithTitle(
+        PhoneInput(
             modifier = Modifier.padding(top = 8.dp),
             title = stringResource(R.string.phone_number),
             onValueChange = { onPhoneInput(it) }

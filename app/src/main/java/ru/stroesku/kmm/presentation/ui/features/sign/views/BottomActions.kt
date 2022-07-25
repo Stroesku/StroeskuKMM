@@ -14,8 +14,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import ru.stroesku.kmm.presentation.ui.base.PrimaryButton
 import ru.stroesku.kmm.R
-import ru.stroesku.kmm.presentation.ui.theme.StrTheme.strColors
-import ru.stroesku.kmm.presentation.ui.theme.StrTheme.strTypography
+import ru.stroesku.kmm.presentation.ui.theme.BaseTheme.baseColors
+import ru.stroesku.kmm.presentation.ui.theme.BaseTheme.baseTypography
 import ru.stroesku.kmm.presentation.ui.utils.SpannableUtils
 
 @Composable
@@ -33,13 +33,13 @@ fun BottomActions(
         val annotatedString = SpannableUtils.amendSpannableString(
             commonText = stringResource(id = R.string.sign_in_user_agreement_1),
             selectText = stringResource(id = R.string.sign_in_user_agreement_2),
-            color = strColors.secondaryTextColor
+            color = baseColors.secondaryTextColor
         )
 
         Text(
             text = annotatedString,
             modifier = Modifier.clickable {},
-            style = strTypography.body1,
+            style = baseTypography.body1,
             textAlign = TextAlign.Center,
         )
 

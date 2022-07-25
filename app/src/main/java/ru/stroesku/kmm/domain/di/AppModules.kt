@@ -6,8 +6,6 @@ import kotlinx.coroutines.ObsoleteCoroutinesApi
 import kotlinx.serialization.ExperimentalSerializationApi
 import org.koin.core.annotation.KoinExperimentalAPI
 import org.koin.core.module.Module
-import ru.stroesku.kmm.domain.di.ClientModule
-import ru.stroesku.kmm.domain.di.RepositoryModule
 
 @ExperimentalSerializationApi
 @ObsoleteCoroutinesApi
@@ -19,6 +17,7 @@ object AppModules {
     fun get(): List<Module> = listOf(
         ClientModule.get(),
         ApiModule.get(),
+        MapperModule.get(),
         RepositoryModule.get()
     )
 }

@@ -10,9 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import ru.stroesku.kmm.presentation.ui.extension.getOrEmpty
-import ru.stroesku.kmm.presentation.ui.theme.StrTheme.strColors
-import ru.stroesku.kmm.presentation.ui.theme.StrTheme.strShapes
-import ru.stroesku.kmm.presentation.ui.theme.StrTheme.strTypography
+import ru.stroesku.kmm.presentation.ui.theme.BaseTheme
 
 @Composable
 fun InputCodeDecorationBox(
@@ -48,16 +46,16 @@ fun InputCodeDecorationBox(
 @Composable
 private fun Cell(modifier: Modifier, text: String) {
     Card(
-        shape = strShapes.roundDefault,
+        shape = BaseTheme.baseShapes.roundDefault,
         modifier = modifier.width(48.dp),
-        border = BorderStroke(width = 0.5.dp, color = strColors.borderColor)
+        border = BorderStroke(width = 0.5.dp, color = BaseTheme.baseColors.borderColor)
     ) {
         Text(
             text = text,
             modifier = modifier
                 .width(48.dp)
                 .padding(top = 4.dp),
-            style = strTypography.h1,
+            style = BaseTheme.baseTypography.h1,
             textAlign = TextAlign.Center
         )
     }

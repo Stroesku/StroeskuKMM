@@ -20,12 +20,12 @@ import ru.alexgladkov.odyssey.compose.local.LocalRootController
 import ru.stroesku.kmm.R
 import ru.stroesku.kmm.presentation.ui.base.ErrorDialog
 import ru.stroesku.kmm.presentation.ui.base.Toolbar
-import ru.stroesku.kmm.presentation.ui.base.input.InputPhoneWithTitle
+import ru.stroesku.kmm.presentation.ui.base.input.PhoneInput
 import ru.stroesku.kmm.presentation.ui.features.sign.`in`.flow.SignInAction
 import ru.stroesku.kmm.presentation.ui.features.sign.views.BottomActions
 import ru.stroesku.kmm.presentation.ui.features.sign.views.CodeInput
 import ru.stroesku.kmm.presentation.ui.navigation.RootNavTree
-import ru.stroesku.kmm.presentation.ui.theme.StrTheme.strColors
+import ru.stroesku.kmm.presentation.ui.theme.BaseTheme.baseColors
 import timber.log.Timber
 
 
@@ -36,7 +36,7 @@ fun SignInScreen() {
     StoredViewModel(factory = { SignInViewModel() }) { viewModel ->
         val viewState = viewModel.viewStates().observeAsState().value
         Timber.e("SignInScreen state: $viewState")
-        Surface(color = strColors.primaryBackground) {
+        Surface(color = baseColors.primaryBackground) {
             Column() {
                 SignInToolbar(
                     viewState.subState,
@@ -86,7 +86,7 @@ fun SignInContent(
                 .padding(horizontal = 24.dp)
                 .fillMaxSize()
         ) {
-            PhoneInput(onPhoneInput = { validatePhoneEvent(it) })
+            SignInPhoneInput(onPhoneInput = { validatePhoneEvent(it) })
             BottomActions(
                 modifier = modifier
                     .padding(bottom = 16.dp)
@@ -120,7 +120,7 @@ fun SignInError(message: String, onClose: () -> Unit) {
 }
 
 @Composable
-fun PhoneInput(
+fun SignInPhoneInput(
     modifier: Modifier = Modifier,
     onPhoneInput: (String) -> Unit
 ) {
@@ -130,7 +130,7 @@ fun PhoneInput(
             text = stringResource(id = R.string.sign_in)
         )
 
-        InputPhoneWithTitle(
+        PhoneInput(
             modifier = Modifier.padding(top = 24.dp),
             title = stringResource(R.string.phone_input_desc),
             onValueChange = { onPhoneInput.invoke(it) }

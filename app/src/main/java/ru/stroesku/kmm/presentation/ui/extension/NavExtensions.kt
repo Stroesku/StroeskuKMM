@@ -10,7 +10,7 @@ import ru.alexgladkov.odyssey.compose.extensions.setupWithActivity
 import ru.alexgladkov.odyssey.compose.local.LocalRootController
 import ru.alexgladkov.odyssey.compose.navigation.RootComposeBuilder
 import ru.alexgladkov.odyssey.compose.navigation.modal_navigation.ModalNavigator
-import ru.stroesku.kmm.presentation.ui.theme.StrTheme
+import ru.stroesku.kmm.presentation.ui.theme.BaseTheme
 
 fun ComponentActivity.setupRootNavigation(
     startScreen: String,
@@ -22,7 +22,7 @@ fun ComponentActivity.setupRootNavigation(
     rootController.setupWithViewModels()
 
     setContent {
-        StrTheme {
+        BaseTheme {
             CompositionLocalProvider(
                 *providers,
                 LocalRootController provides rootController

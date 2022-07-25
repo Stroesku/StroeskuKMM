@@ -17,8 +17,8 @@ import ru.stroesku.kmm.presentation.ui.base.PrimaryButton
 import ru.stroesku.kmm.presentation.ui.base.StrText
 import ru.stroesku.kmm.presentation.ui.base.VmigDivider
 import ru.stroesku.kmm.presentation.ui.features.orders.avaliables.getOrders
-import ru.stroesku.kmm.presentation.ui.theme.StrTheme.strColors
-import ru.stroesku.kmm.presentation.ui.theme.StrTheme.strTypography
+import ru.stroesku.kmm.presentation.ui.theme.BaseTheme.baseColors
+import ru.stroesku.kmm.presentation.ui.theme.BaseTheme.baseTypography
 import ru.stroesku.kmm.presentation.ui.utils.timeHHMMDayWeekFormat
 import java.util.*
 
@@ -26,7 +26,7 @@ import java.util.*
 fun OrderDetailsScreen() {
     Scaffold(topBar = { OrderDetailsToolbar(24234322) }) {
         Surface(
-            color = strColors.fortyBackground,
+            color = baseColors.fortyBackground,
             modifier = Modifier
                 .fillMaxSize()
         ) {
@@ -80,7 +80,7 @@ fun OrderDetailsContent(modifier: Modifier) {
 fun AcceptOrder(modifier: Modifier = Modifier) {
     Surface(
         modifier = Modifier.fillMaxWidth(),
-        color = strColors.fortyBackground,
+        color = baseColors.fortyBackground,
         elevation = 16.dp,
         shape = RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp)
     ) {
@@ -98,12 +98,12 @@ fun AcceptOrder(modifier: Modifier = Modifier) {
 @Composable
 fun AddressInfo(modifier: Modifier, address: String) {
     Column(modifier) {
-        Text(text = address, style = strTypography.h1)
+        Text(text = address, style = baseTypography.h1)
         Text(
             modifier = Modifier.padding(top = 8.dp),
             text = stringResource(R.string.on_map),
-            style = strTypography.normal14,
-            color = strColors.secondaryTextColor
+            style = baseTypography.normal14,
+            color = baseColors.secondaryTextColor
         )
     }
 }
@@ -114,14 +114,14 @@ fun CleanDate(modifier: Modifier, date: Date) {
     Text(
         text = stringResource(R.string.date_clean),
         modifier = modifier.padding(top = 16.dp),
-        style = strTypography.medium16
+        style = baseTypography.medium16
     )
 
     Text(
         text = date.timeHHMMDayWeekFormat(),
         modifier = modifier.padding(top = 8.dp, bottom = 16.dp),
-        style = strTypography.h1,
-        color = strColors.secondaryTextColor
+        style = baseTypography.h1,
+        color = baseColors.secondaryTextColor
     )
 }
 
@@ -131,7 +131,7 @@ fun ClientInfo(modifier: Modifier, name: String, phone: String) {
     Text(
         text = stringResource(R.string.client),
         modifier = modifier.padding(top = 16.dp),
-        style = strTypography.medium16
+        style = baseTypography.medium16
     )
 
     StrText(text = name, modifier = modifier.padding(top = 8.dp))
@@ -139,7 +139,7 @@ fun ClientInfo(modifier: Modifier, name: String, phone: String) {
     StrText(
         text = phone,
         modifier = modifier.padding(top = 8.dp, bottom = 16.dp),
-        color = strColors.secondaryTextColor
+        color = baseColors.secondaryTextColor
     )
 }
 
@@ -149,7 +149,7 @@ fun Note(modifier: Modifier, note: String) {
     Text(
         text = stringResource(R.string.notes),
         modifier = modifier.padding(top = 16.dp),
-        style = strTypography.medium16
+        style = baseTypography.medium16
     )
 
     StrText(
@@ -169,23 +169,23 @@ fun OrderDetailsToolbar(id: Long) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_arrow_left),
                     contentDescription = stringResource(id = R.string.content_desc_back),
-                    tint = strColors.thirtyBackground,
+                    tint = baseColors.thirtyBackground,
                     modifier = Modifier.clickable {}
                 )
 
-                Text(text = "№$id", style = strTypography.medium18)
+                Text(text = "№$id", style = baseTypography.medium18)
 
                 Icon(
                     painter = painterResource(id = R.drawable.ic_phone),
                     contentDescription = stringResource(id = R.string.content_desc_back),
-                    tint = strColors.thirtyBackground,
+                    tint = baseColors.thirtyBackground,
                     modifier = Modifier
                         .padding(end = 16.dp)
                         .clickable {}
                 )
             }
         },
-        backgroundColor = strColors.primaryBackground,
+        backgroundColor = baseColors.primaryBackground,
         elevation = 0.dp
     )
 }

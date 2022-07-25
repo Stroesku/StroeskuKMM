@@ -10,9 +10,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ru.stroesku.kmm.R
 import ru.stroesku.kmm.presentation.ui.extension.isNotNull
-import ru.stroesku.kmm.presentation.ui.theme.StrTheme.strColors
-import ru.stroesku.kmm.presentation.ui.theme.StrTheme.strShapes
-import ru.stroesku.kmm.presentation.ui.theme.StrTheme.strTypography
+import ru.stroesku.kmm.presentation.ui.theme.BaseTheme.baseColors
+import ru.stroesku.kmm.presentation.ui.theme.BaseTheme.baseShapes
+import ru.stroesku.kmm.presentation.ui.theme.BaseTheme.baseTypography
 
 @Composable
 fun PrimaryButton(
@@ -27,7 +27,7 @@ fun PrimaryButton(
         modifier = modifier.fillMaxWidth(),
         text = text,
         onClick = onClick,
-        color = strColors.primaryButton,
+        color = baseColors.primaryButton,
         enabled = enabled,
         isLoading = isLoading,
         icon
@@ -45,7 +45,7 @@ fun SecondaryButton(
         modifier = modifier,
         text = text,
         onClick = onClick,
-        color = strColors.secondaryButton,
+        color = baseColors.secondaryButton,
         enabled
     )
 }
@@ -62,17 +62,17 @@ fun BaseButton(
 ) {
     Button(
         modifier = modifier.heightIn(min = 56.dp),
-        shape = strShapes.roundDefault,
+        shape = baseShapes.roundDefault,
         enabled = enabled,
         colors = ButtonDefaults.buttonColors(
             backgroundColor = color,
-            disabledBackgroundColor = strColors.disableButton
+            disabledBackgroundColor = baseColors.disableButton
         ),
         onClick = { onClick.invoke() }) {
         if (isLoading) {
             CircularProgressIndicator(
                 Modifier.size(24.dp),
-                color = strColors.primaryInvertTextColor
+                color = baseColors.primaryInvertTextColor
             )
         } else {
             if (icon.isNotNull()) {
@@ -83,21 +83,21 @@ fun BaseButton(
                     Text(
                         text = text,
                         fontSize = 16.sp,
-                        color = strColors.primaryInvertTextColor,
-                        style = strTypography.button
+                        color = baseColors.primaryInvertTextColor,
+                        style = baseTypography.button
                     )
                     Icon(
                         painter = painterResource(id = R.drawable.ic_arrow_right),
                         contentDescription = "Next",
-                        tint = strColors.primaryInvertTextColor
+                        tint = baseColors.primaryInvertTextColor
                     )
                 }
             } else {
                 Text(
                     text = text,
                     fontSize = 16.sp,
-                    color = strColors.primaryInvertTextColor,
-                    style = strTypography.button
+                    color = baseColors.primaryInvertTextColor,
+                    style = baseTypography.button
                 )
             }
         }

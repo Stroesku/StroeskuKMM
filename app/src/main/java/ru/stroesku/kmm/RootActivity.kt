@@ -19,8 +19,8 @@ class RootActivity : AppCompatActivity(), KoinComponent {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setupRootNavigation(RootNavTree.Main.name) {
-            generateRootGraph()
+        setupRootNavigation(RootNavTree.Splash.name) {
+            generateRootGraph(this@RootActivity)
         }
     }
 }

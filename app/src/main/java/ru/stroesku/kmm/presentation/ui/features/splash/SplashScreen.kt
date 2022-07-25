@@ -26,7 +26,7 @@ import timber.log.Timber
 
 
 @Composable
-fun ScreenScreen() {
+fun SplashScreen() {
     StoredViewModel(factory = { SplashViewModel() }) { viewModel ->
 
         LaunchedEffect(

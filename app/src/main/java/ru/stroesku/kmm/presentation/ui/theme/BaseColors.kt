@@ -2,7 +2,7 @@ package ru.stroesku.kmm.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-data class StrColors(
+data class BaseColors(
     //Background
     val primaryBackground: Color,
     val secondaryBackground: Color,

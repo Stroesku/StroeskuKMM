@@ -16,22 +16,43 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import ru.stroesku.kmm.presentation.ui.extension.isNotEmptyOrBlank
+import ru.stroesku.kmm.presentation.ui.base.drawer.LocalDrawerCoroutineScope
+import ru.stroesku.kmm.presentation.ui.base.drawer.LocalDrawerState
+import kotlinx.coroutines.launch
 import ru.stroesku.kmm.R
-import ru.stroesku.kmm.presentation.ui.theme.StrTheme
-import ru.stroesku.kmm.presentation.ui.theme.StrTheme.strColors
-import ru.stroesku.kmm.presentation.ui.theme.StrTheme.strTypography
+import ru.stroesku.kmm.presentation.ui.extension.isNotEmptyOrBlank
+import ru.stroesku.kmm.presentation.ui.theme.BaseTheme
+import ru.stroesku.kmm.presentation.ui.theme.BaseTheme.baseColors
+import ru.stroesku.kmm.presentation.ui.theme.BaseTheme.baseTypography
+
+@Composable
+fun MainToolbar(
+    title: String = "",
+    backgroundColor: Color = baseColors.primaryBackground,
+    iconTint: Color = baseColors.primaryButton,
+) {
+    val drawerState = LocalDrawerState.current
+    val scope = LocalDrawerCoroutineScope.current
+    Toolbar(
+        icon = R.drawable.ic_burger,
+        title = title,
+        backgroundColor = backgroundColor,
+        iconTint = iconTint,
+    ) {
+        scope.launch { drawerState.open() }
+    }
+}
 
 @Composable
 fun Toolbar(
     modifier: Modifier = Modifier,
     icon: Int = R.drawable.ic_arrow_left,
-    iconTint: Color = strColors.primaryButton,
+    iconTint: Color = baseColors.primaryButton,
     title: String = "",
     contentDescription: String = "Back",
-    backgroundColor: Color = strColors.primaryBackground,
+    backgroundColor: Color = baseColors.primaryBackground,
     elevation: Dp = 0.dp,
-    onBackPress: () -> Unit = {}
+    onClick: () -> Unit = {}
 ) {
     TopAppBar(
         title = {
@@ -41,13 +62,13 @@ fun Toolbar(
                     contentDescription = contentDescription,
                     tint = iconTint,
                     modifier = modifier.clickable {
-                        onBackPress.invoke()
+                        onClick.invoke()
                     }
                 )
 
                 if (title.isNotEmptyOrBlank()) Text(
                     text = title,
-                    style = strTypography.medium18,
+                    style = baseTypography.medium18,
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(end = 32.dp),
@@ -63,7 +84,7 @@ fun Toolbar(
 @Preview
 @Composable
 fun Preview() {
-    StrTheme {
+    BaseTheme {
         Toolbar()
     }
 }

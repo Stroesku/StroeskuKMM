@@ -19,8 +19,8 @@ import ru.stroesku.kmm.presentation.ui.base.Header
 import ru.stroesku.kmm.presentation.ui.base.StrText
 import ru.stroesku.kmm.presentation.ui.base.input.code.CodeInputField
 import ru.stroesku.kmm.R
-import ru.stroesku.kmm.presentation.ui.theme.StrTheme
-import ru.stroesku.kmm.presentation.ui.theme.StrTheme.strColors
+import ru.stroesku.kmm.presentation.ui.theme.BaseTheme
+import ru.stroesku.kmm.presentation.ui.theme.BaseTheme.baseColors
 import ru.stroesku.kmm.presentation.ui.utils.timeMinuteSecondsFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -28,7 +28,7 @@ import java.util.concurrent.TimeUnit
 @Preview(showBackground = true)
 @Composable
 fun PreviewCodeInput() {
-    StrTheme {
+    BaseTheme {
         CodeInput(
             title = "Вход",
             phoneHint = "89999999999",
@@ -55,7 +55,7 @@ fun CodeInput(
             if (titleHint != null)
                 Header(
                     modifier = Modifier.padding(start = 8.dp),
-                    text = titleHint, color = strColors.hintTextColor
+                    text = titleHint, color = baseColors.hintTextColor
                 )
         }
         StrText(
@@ -64,7 +64,7 @@ fun CodeInput(
         )
         StrText(
             text = stringResource(id = R.string.change),
-            color = strColors.secondaryTextColor,
+            color = baseColors.secondaryTextColor,
             modifier = Modifier
                 .padding(top = 4.dp)
                 .clickable { onPhoneChange.invoke() }
@@ -112,7 +112,7 @@ fun TimeCounter(seconds: Long = 60, onRepeatClick: () -> Unit) {
                 },
             text = stringResource(R.string.repeat_request_code),
             textAlign = TextAlign.Center,
-            color = strColors.secondaryTextColor
+            color = baseColors.secondaryTextColor
         )
     } else {
         StrText(
@@ -124,7 +124,7 @@ fun TimeCounter(seconds: Long = 60, onRepeatClick: () -> Unit) {
                 time.value.timeMinuteSecondsFormat()
             ),
             textAlign = TextAlign.Center,
-            color = strColors.hintTextColor
+            color = baseColors.hintTextColor
         )
     }
 

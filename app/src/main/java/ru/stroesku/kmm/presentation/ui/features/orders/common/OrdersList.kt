@@ -11,20 +11,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import ru.stroesku.kmm.presentation.ui.features.orders.avaliables.Order
-import ru.stroesku.kmm.presentation.ui.theme.StrTheme.strColors
-import ru.stroesku.kmm.presentation.ui.theme.StrTheme.strTypography
+import ru.stroesku.kmm.presentation.ui.theme.BaseTheme.baseColors
+import ru.stroesku.kmm.presentation.ui.theme.BaseTheme.baseTypography
 
 @Composable
 fun OrdersList(scroll: ScrollState, title: String, list: List<Order>) {
     Surface(
-        color = strColors.primaryBackground,
+        color = baseColors.primaryBackground,
         shape = RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp)
     ) {
         Column() {
             Text(
                 modifier = Modifier.padding(16.dp),
                 text = title,
-                style = strTypography.medium16
+                style = baseTypography.medium16
             )
             Column(modifier = Modifier.verticalScroll(scroll)) {
                 list.forEach {

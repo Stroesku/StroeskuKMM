@@ -19,33 +19,51 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
+import ru.stroesku.kmm.presentation.ui.base.input.DateTransformation
 import ru.stroesku.kmm.presentation.ui.base.input.PhoneTransformation
 import ru.stroesku.kmm.R
-import ru.stroesku.kmm.presentation.ui.theme.StrTheme.strColors
-import ru.stroesku.kmm.presentation.ui.theme.StrTheme.strTypography
+import ru.stroesku.kmm.presentation.ui.extension.isNotEmptyOrBlank
+import ru.stroesku.kmm.presentation.ui.theme.BaseTheme.baseColors
+import ru.stroesku.kmm.presentation.ui.theme.BaseTheme.baseTypography
 
 
 @Composable
-fun InputPhoneWithTitle(
+fun DateInput(
+    modifier: Modifier,
+    title: String = stringResource(R.string.date_of_birth),
+    value: String = "",
+    onValueChange: (String) -> Unit = {},
+) {
+    TextInput(
+        modifier = modifier,
+        title = title,
+        value = value,
+        onValueChange = onValueChange,
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+        visualTransformation = DateTransformation(),
+    )
+}
+
+@Composable
+fun PhoneInput(
     modifier: Modifier,
     title: String = stringResource(R.string.phone_number),
     phoneCode: String = stringResource(R.string.phone_code_7),
     onValueChange: (String) -> Unit = {},
 ) {
-    InputTitleText(
+    TextInput(
         modifier = modifier,
         title = title,
         onValueChange = { onValueChange.invoke("$phoneCode$it") },
-        leadingIcon = { Text(text = phoneCode, style = strTypography.normal16) },
+        leadingIcon = { Text(text = phoneCode, style = baseTypography.normal16) },
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
-        visualTransformation = { PhoneTransformation(it).transform() },
+        visualTransformation = PhoneTransformation(),
     )
 }
 
-
 @Composable
-fun InputTitleText(
-    title: String,
+fun TextInput(
+    title: String? = null,
     modifier: Modifier = Modifier,
     onValueChange: (String) -> Unit,
     value: String = "",
@@ -54,11 +72,20 @@ fun InputTitleText(
     visualTransformation: VisualTransformation = VisualTransformation.None
 ) {
     Column(modifier = modifier) {
-        Text(text = title, style = strTypography.body1)
-        Spacer(modifier = Modifier.height(4.dp))
-        BaseInputText(
+        title?.let {
+            Text(text = it, style = baseTypography.body1)
+            Spacer(modifier = Modifier.height(4.dp))
+        }
+
+        if (value.isNotEmptyOrBlank()) BaseInputText(
             onValueChange = onValueChange,
+            leadingIcon = leadingIcon,
             value = value,
+            keyboardOptions = keyboardOptions,
+            visualTransformation = visualTransformation
+        )
+        else BaseInputText(
+            onValueChange = onValueChange,
             leadingIcon = leadingIcon,
             keyboardOptions = keyboardOptions,
             visualTransformation = visualTransformation
@@ -67,16 +94,16 @@ fun InputTitleText(
 }
 
 @Composable
-fun BaseInputText(
+private fun BaseInputText(
     modifier: Modifier = Modifier,
     value: String = "",
     onValueChange: (String) -> Unit,
     shape: Shape = RoundedCornerShape(20.dp),
     colors: TextFieldColors = TextFieldDefaults.outlinedTextFieldColors(
-        backgroundColor = strColors.secondaryBackground,
-        unfocusedBorderColor = strColors.primaryBackground,
-        focusedBorderColor = strColors.secondaryTextColor,
-        cursorColor = strColors.secondaryTextColor
+        backgroundColor = baseColors.secondaryBackground,
+        unfocusedBorderColor = baseColors.primaryBackground,
+        focusedBorderColor = baseColors.secondaryTextColor,
+        cursorColor = baseColors.secondaryTextColor
     ),
     leadingIcon: @Composable (() -> Unit)? = null,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
@@ -97,6 +124,6 @@ fun BaseInputText(
         leadingIcon = leadingIcon,
         keyboardOptions = keyboardOptions,
         visualTransformation = visualTransformation,
-        textStyle = strTypography.normal16
+        textStyle = baseTypography.normal16
     )
 }

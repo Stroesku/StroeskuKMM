@@ -18,20 +18,20 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.TextUnit
 import ru.stroesku.kmm.presentation.ui.theme.LocalTypographyProvider
-import ru.stroesku.kmm.presentation.ui.theme.StrTheme.strColors
-import ru.stroesku.kmm.presentation.ui.theme.StrTheme.strTypography
+import ru.stroesku.kmm.presentation.ui.theme.BaseTheme.baseColors
+import ru.stroesku.kmm.presentation.ui.theme.BaseTheme.baseTypography
 
 @Composable
 fun Header(
     modifier: Modifier = Modifier,
     text: String,
-    color: Color = strColors.primaryTextColor
+    color: Color = baseColors.primaryTextColor
 ) {
     Text(
         modifier = modifier,
         text = text,
         color = color,
-        style = strTypography.h1
+        style = baseTypography.h1
     )
 }
 

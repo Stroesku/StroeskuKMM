@@ -1,11 +1,11 @@
 package ru.stroesku.kmm.domain.di
 
-import ru.stroesku.kmm.data.repositories.UserRepository
 import org.koin.dsl.module
+import ru.stroesku.kmm.data.repositories.UserRepository
 
 object RepositoryModule {
 
     fun get() = module {
-        single { UserRepository(get(), get()) }
+        single { UserRepository(get(), get(),get()) }
     }
 }

@@ -12,7 +12,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ru.stroesku.kmm.presentation.ui.base.Toolbar
 import ru.stroesku.kmm.presentation.ui.features.orders.common.OrdersList
-import ru.stroesku.kmm.presentation.ui.theme.StrTheme.strColors
+import ru.stroesku.kmm.presentation.ui.theme.BaseTheme.baseColors
 import ru.dru.test.ui.post.detail.view.CollapsingLayout
 import ru.stroesku.kmm.R
 import java.util.*
@@ -24,12 +24,12 @@ val COLLAPSED_SIZE = 56.dp
 fun AvailableScreen() {
     val scrollState = rememberScrollState(0)
 
-    Surface(color = strColors.thirtyBackground) {
+    Surface(color = baseColors.thirtyBackground) {
         Column {
             Toolbar(
-                backgroundColor = strColors.thirtyBackground,
+                backgroundColor = baseColors.thirtyBackground,
                 icon = R.drawable.ic_burger,
-                iconTint = strColors.secondaryBackground
+                iconTint = baseColors.secondaryBackground
             )
             Calendar { scrollState.value }
             OrdersList(scrollState, stringResource(id = R.string.available_orders), getOrders())
@@ -45,8 +45,8 @@ fun Calendar(scroll: () -> Int) {
         collapsedSize = COLLAPSED_SIZE,
     ) {
         Image(
-            painter = painterResource(R.drawable.ic_launcher_foreground),
-            colorFilter = ColorFilter.tint(strColors.secondaryBackground),
+            painter = painterResource(R.drawable.ic_logo),
+            colorFilter = ColorFilter.tint(baseColors.secondaryBackground),
             contentDescription = "",
         )
     }

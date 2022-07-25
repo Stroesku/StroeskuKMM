@@ -1,9 +1,13 @@
 <resources>
     <string name="app_name">vmig-clean</string>
 
+    <!--    Directories-->
+    <string name="photo_dir">photos</string>
+
     <!--    Actions-->
     <string name="ok">Ок</string>
     <string name="change">Изменить</string>
+    <string name="save">Сохранить</string>
 
     <!--    Phone-->
     <string name="phone_number">Номер телефона</string>
@@ -30,6 +34,8 @@
     <string name="repeat_request_code">Отправить код повторно</string>
     <string name="repeat_request_code_counter">Отправить код повторно через (%s)</string>
 
+    <!--    UpdatePhone-->
+    <string name="update_phone">Изменить номер телефона</string>
 
     <!--    Drawer menu-->
     <string name="available_orders">Доступные заказы</string>
@@ -39,6 +45,13 @@
     <string name="date_clean">Дата уборки</string>
     <string name="client">Клиент</string>
     <string name="notes">Заметка</string>
+
+    <!--    Profile-->
+    <string name="profile">Профиль</string>
+    <string name="date_of_birth">День рождения</string>
+    <string name="email">E-mail</string>
+    <string name="success_update">Данные успешно обновлены</string>
+    <string name="upload_new_photo">Загрузить фото профиля</string>
 
     <!--    Content Desc-->
     <string name="content_desc_error">Error</string>

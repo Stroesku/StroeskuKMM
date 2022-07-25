@@ -12,9 +12,12 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.TextFieldColors
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.takeOrElse
@@ -23,12 +26,12 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import ru.stroesku.kmm.presentation.ui.theme.StrTheme
+import ru.stroesku.kmm.presentation.ui.theme.BaseTheme
 
 @Preview(showBackground = true)
 @Composable
 fun Preview() {
-    StrTheme {
+    BaseTheme {
         CodeInputField(onCompleteInput = {})
     }
 }
@@ -39,8 +42,10 @@ fun CodeInputField(
     onCompleteInput: (String) -> Unit
 ) {
     val testState = remember { mutableStateOf("") }
+    val focusRequester = remember { FocusRequester() }
+
     BasicCodeInput(
-        modifier = modifier,
+        modifier = modifier.focusRequester(focusRequester),
         value = testState.value,
         onValueChange = { testState.value = it },
         onCompleteInput = {
@@ -48,6 +53,9 @@ fun CodeInputField(
             testState.value = ""
         }
     )
+    LaunchedEffect(Unit) {
+        focusRequester.requestFocus()
+    }
 }
 
 @Composable

@@ -1,18 +1,18 @@
 package ru.stroesku.kmm.presentation.ui.features.sign.`in`
 
 import com.adeo.kviewmodel.BaseSharedViewModel
-import ru.stroesku.kmm.data.repositories.UserRepository
-import ru.stroesku.kmm.domain.exception.ResponseException
-import ru.stroesku.kmm.domain.param.UserInfoParam
-import ru.stroesku.kmm.presentation.ui.features.sign.`in`.flow.SignInAction
-import ru.stroesku.kmm.presentation.ui.features.sign.`in`.flow.SignInChange
-import ru.stroesku.kmm.presentation.ui.features.sign.`in`.flow.SignInReducer
-import ru.stroesku.kmm.presentation.ui.features.sign.`in`.flow.SignInViewState
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.*
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+import ru.stroesku.kmm.data.repositories.UserRepository
+import ru.stroesku.kmm.domain.exception.ResponseException
+import ru.stroesku.kmm.domain.param.SignParam
+import ru.stroesku.kmm.presentation.ui.features.sign.`in`.flow.SignInAction
+import ru.stroesku.kmm.presentation.ui.features.sign.`in`.flow.SignInChange
+import ru.stroesku.kmm.presentation.ui.features.sign.`in`.flow.SignInReducer
+import ru.stroesku.kmm.presentation.ui.features.sign.`in`.flow.SignInViewState
 
 @FlowPreview
 @ExperimentalCoroutinesApi
@@ -80,7 +80,7 @@ class SignInViewModel :
         return flowOf(action)
             .filterIsInstance<SignInAction.SendCode>()
             .flatMapConcat {
-                repository.sendSmsCodeSignIn(UserInfoParam(phone = it.phone, code = it.code))
+                repository.sendSmsCodeSignIn(SignParam(phone = it.phone, code = it.code))
                     .map { SignInChange.CompleteStep as SignInChange }
             }
     }

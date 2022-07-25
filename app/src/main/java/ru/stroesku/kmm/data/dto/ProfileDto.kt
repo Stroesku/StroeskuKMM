@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class CleanerDto(
+data class ProfileDto(
     @SerialName("id")
     val id: Int?,
     @SerialName("created_at")
@@ -17,6 +17,8 @@ data class CleanerDto(
     val lastName: String?,
     @SerialName("phone")
     val phone: String?,
+    @SerialName("email")
+    val email: String?,
     @SerialName("birth_date")
     val dateOfBirth: String?,
     @SerialName("picture")

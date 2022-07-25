@@ -17,8 +17,8 @@ import ru.stroesku.kmm.R
 
 
 @Composable
-fun StrTheme(content: @Composable () -> Unit) {
-    val colors = StrColors(
+fun BaseTheme(content: @Composable () -> Unit) {
+    val colors = BaseColors(
         primaryBackground = Color(0xFFE3E3E3),
         secondaryBackground = Color(0xFFFFFFFF),
         thirtyBackground = Color(0xFF282828),
@@ -52,7 +52,7 @@ fun StrTheme(content: @Composable () -> Unit) {
         )
     )
 
-    val typography = StrTypography(
+    val typography = BaseTypography(
         button = TextStyle(
             fontSize = 16.sp,
             fontStyle = FontStyle.Normal,
@@ -103,7 +103,7 @@ fun StrTheme(content: @Composable () -> Unit) {
         )
     )
 
-    val shape = StrShapes(roundDefault = RoundedCornerShape(20.dp))
+    val shape = BaseShapes(roundDefault = RoundedCornerShape(20.dp))
 
     CompositionLocalProvider(
         LocalColorProvider provides colors,
@@ -113,31 +113,31 @@ fun StrTheme(content: @Composable () -> Unit) {
     )
 }
 
-object StrTheme {
-    val strColors: StrColors
+object BaseTheme {
+    val baseColors: BaseColors
         @Composable
         @ReadOnlyComposable
         get() = LocalColorProvider.current
 
-    val strTypography: StrTypography
+    val baseTypography: BaseTypography
         @Composable
         @ReadOnlyComposable
         get() = LocalTypographyProvider.current
 
-    val strShapes: StrShapes
+    val baseShapes: BaseShapes
         @Composable
         @ReadOnlyComposable
         get() = LocalShapeProvider.current
 }
 
-val LocalColorProvider = staticCompositionLocalOf<StrColors> {
+val LocalColorProvider = staticCompositionLocalOf<BaseColors> {
     error("No default colors provided")
 }
 
-val LocalTypographyProvider = staticCompositionLocalOf<StrTypography> {
+val LocalTypographyProvider = staticCompositionLocalOf<BaseTypography> {
     error("No default typography provided")
 }
 
-val LocalShapeProvider = staticCompositionLocalOf<StrShapes> {
+val LocalShapeProvider = staticCompositionLocalOf<BaseShapes> {
     error("No default shapes provided")
 }

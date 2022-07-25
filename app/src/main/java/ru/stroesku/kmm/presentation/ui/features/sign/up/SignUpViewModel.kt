@@ -1,7 +1,6 @@
 package ru.stroesku.kmm.presentation.ui.features.sign.up
 
 import com.adeo.kviewmodel.BaseSharedViewModel
-import ru.stroesku.kmm.data.repositories.UserRepository
 import ru.stroesku.kmm.domain.exception.ResponseException
 import ru.stroesku.kmm.presentation.ui.extension.isNotEmptyOrBlank
 import ru.stroesku.kmm.presentation.ui.features.sign.up.flow.SignUpAction
@@ -13,6 +12,7 @@ import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.*
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+import ru.stroesku.kmm.data.repositories.UserRepository
 
 @FlowPreview
 @ExperimentalCoroutinesApi
