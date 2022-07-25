@@ -10,11 +10,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import ru.stroesku.kmm.presentation.ui.base.Toolbar
-import ru.stroesku.kmm.presentation.ui.features.orders.common.OrdersList
-import ru.stroesku.kmm.presentation.ui.theme.BaseTheme.baseColors
 import ru.dru.test.ui.post.detail.view.CollapsingLayout
 import ru.stroesku.kmm.R
+import ru.stroesku.kmm.presentation.ui.base.MainToolbar
+import ru.stroesku.kmm.presentation.ui.features.orders.common.OrdersList
+import ru.stroesku.kmm.presentation.ui.theme.BaseTheme.baseColors
 import java.util.*
 
 val EXPANDED_SIZE = 270.dp
@@ -26,10 +26,9 @@ fun AvailableScreen() {
 
     Surface(color = baseColors.thirtyBackground) {
         Column {
-            Toolbar(
+            MainToolbar(
                 backgroundColor = baseColors.thirtyBackground,
-                icon = R.drawable.ic_burger,
-                iconTint = baseColors.secondaryBackground
+                iconTint = baseColors.secondaryBackground,
             )
             Calendar { scrollState.value }
             OrdersList(scrollState, stringResource(id = R.string.available_orders), getOrders())
